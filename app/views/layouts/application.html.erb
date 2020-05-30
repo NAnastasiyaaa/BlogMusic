@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blognastya</title>
+    <%= csrf_meta_tags %>
+	<script id="dsq-count-scr" src="//myblog-9zzc3brdhi.disqus.com/embed.js" async></script>
+  <script src="https://kit.fontawesome.com/678f8409a8.js" crossorigin="anonymous"></script>
+
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+
+
+  <body>
+  	<div class="container col-12 col-md-14 content ">
+					<nav class="navbar navbar-expand-lg navbar-warning bg-warning  text-dark ">
+								<a class="my-1 mr-md-auto font-weight-bold p-3 mb-3 text-light bg-dark btn btn-outline-dark "><h2>BLOSSOM</h2></a>
+
+
+								<ul class="class="btn btn-secondary float-left " ">
+									<li class="btn btn-primary btn-lg active"><%=link_to "All Posts", posts_path, class: "nav-link"%>
+									</li>
+									<li class="btn btn-primary btn-lg active" ><%= link_to "New Post", new_post_path, class: "nav-link"%>
+									</li>
+                  <% if user_signed_in? %>
+
+
+
+										<li class="btn btn-primary btn-lg active"><%= link_to "Saved posts", user_saves_path(current_user.id), class: "nav-link"%>
+										</li>
+
+											<li class="btn btn-primary btn-lg active"><%=  link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link"%>
+										</li>
+										</ul>
+
+
+								<% else %>
+
+										<li class="nav-item text-light bg-dark border border-warning ",style="float:right"><%= link_to "Log in ", new_user_session_path, class: "nav-link "%>
+										</li>
+										<li class="nav-item text-light bg-dark border border-warning",style="float:right"><%= link_to "Register", new_user_registration_path, class: "nav-link"%>
+										</li>
+									</ul>
+									<% end %>
+                  </nav>
+
+
+                <div class=" container col-12 col-md-14 content">
+				<% flash.each do |name, message| %>
+					<div class="alert  <%= bootstrap_class_for(name) %> ">
+						<button  class="close "  data-dismiss="alert">&times;</button>
+						<%= message %>
+					</div>
+				<% end %>
+			</div>
+			<div class = "col">
+					<div class ="  ml-0  col-md-8" >
+						<%= yield %>
+					</div>
+
+ <hr class="my-4">
+				<div class =" p-4 mb-2 btn btn-outline-warning " >
+					<h3 class = 'mb-3 text-left '> OUR TAGS ^_^ </h3>
+
+						<% tag_list (Tag.counts) do |tag| %>
+						<%= link_to tag.name, tag_path(tag.name), class: "tag" %>
+						<% end %>
+		   		</div>
+    		</div>
+			  </div>
+
+  </body>
+</html>
