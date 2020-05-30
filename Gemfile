@@ -37,7 +37,7 @@ gem 'devise'
 
 gem 'ckeditor', '~> 4.1'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
-gem 'bootstrap', '~> 4.0.0.alpha4'
+gem 'bootstrap', '~> 4.3.1'
 source 'http://insecure.rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
